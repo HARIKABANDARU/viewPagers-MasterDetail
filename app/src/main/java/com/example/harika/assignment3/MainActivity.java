@@ -1,5 +1,6 @@
 package com.example.harika.assignment3;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -12,14 +13,17 @@ public class MainActivity extends AppCompatActivity implements MainFragment.cove
     MainFragment mainFragment;
     Fragment AboutMe;
     private FragmentTransaction fragmentTransaction;
-    public final static String MAIN_FRAGMENT_TAG="MAIN_FRAGMENT";
+    public final static String MAIN_FRAGMENT_TAG = "MAIN_FRAGMENT";
 
     @Override
     public void loadCoverPage()
     {
 
-        AboutMe = new AboutMe();
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, AboutMe).commit();
+       /* AboutMe = new AboutMe();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, AboutMe).commit();*/
+        Intent lIntent = new Intent(MainActivity.this, Activity_ViewPager.class);
+        startActivity(lIntent);
+
 
     }
 
@@ -28,9 +32,10 @@ public class MainActivity extends AppCompatActivity implements MainFragment.cove
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(savedInstanceState == null) {
+       if(savedInstanceState == null) {
             mainFragment = new MainFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.container, mainFragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.container, mainFragment).
+                    addToBackStack(null).commit();
         }
     }
 
@@ -44,4 +49,5 @@ public class MainActivity extends AppCompatActivity implements MainFragment.cove
         }
     }
 
-}
+    }
+
