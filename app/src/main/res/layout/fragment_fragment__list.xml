@@ -1,27 +1,57 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/master_bg">
+    <TextView
+android:id="@+id/movieTitle"
+android:textSize="35sp"
+android:textColor="@color/white"
+android:background="@color/colorPrimaryDark"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+/>
+
+
+
+<LinearLayout
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:gravity="center"
+    android:padding="20dp"
     android:layout_height="match_parent"
     tools:context="com.example.harika.assignment3.Fragment_List">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:textStyle="bold"
+        android:textColor="@color/darkbrown"
+        android:id="@+id/counter"
+        android:text="Counter : 0"
+        android:textSize="22sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="Increase"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:id="@+id/increaseButton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size"
+        android:layout_height="wrap_content" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/deadpool" />
+    <Button
+        android:text="Decrease"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size"
+        android:id="@+id/decreaseButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/dispicableme" />
-
-
-</FrameLayout>
+</LinearLayout>
+</LinearLayout>

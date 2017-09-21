@@ -9,35 +9,42 @@ import java.util.HashMap;
  * Created by Harika on 9/20/2017.
  */
 
-public class Activity_MasterDetail extends AppCompatActivity implements Fragment_List.OnListItemSelectedListemer {
+public class Activity_MasterDetail extends AppCompatActivity implements  Fragment_List.onButtonClickListener{
     private boolean mTwoPane;
+    MovieBean movieBean;
+    int position = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        movieBean = new MovieBean();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master_detail);
         if(savedInstanceState == null)
         {
             getSupportFragmentManager().beginTransaction().
-                    replace(R.id.main_container,Fragment_List.newInstance())
+                    replace(R.id.main_container,new Fragment_List())
                     .commit();
         }
-        if(findViewById(R.id.detail_container)!=null)
+        if(findViewById(R.id.detail_container)!=null) {
             mTwoPane = true;
-    }
-    public void onListItemSelected(int position, HashMap<String,?>moive)
-    {
-        if(mTwoPane)
-        {
             getSupportFragmentManager().beginTransaction().
-                    replace(R.id.detail_container,Fragment_DetailView.newInstance(movie))
+                    replace(R.id.detail_container,Fragment_DetailView.newInstance((HashMap<String,?>)movieBean.getItem(position)))
+                    .commit();
+        }
+    }
+
+    @Override
+    public void onButtonClicked(int position) {
+        if(mTwoPane == true) {
+            getSupportFragmentManager().beginTransaction().
+                    replace(R.id.detail_container, Fragment_DetailView.newInstance((HashMap<String, ?>) movieBean.getItem(position)))
                     .addToBackStack(null)
                     .commit();
-
         }
-        else{
+        else
+        {
             getSupportFragmentManager().beginTransaction().
-                    replace(R.id.main_container,Fragment_DetailView.newInstance(movie))
+                    replace(R.id.main_container, Fragment_DetailView.newInstance((HashMap<String, ?>) movieBean.getItem(position)))
                     .addToBackStack(null)
                     .commit();
         }

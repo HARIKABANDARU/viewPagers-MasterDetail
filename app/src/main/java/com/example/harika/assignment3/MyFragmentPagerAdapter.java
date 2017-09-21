@@ -14,27 +14,27 @@ import java.util.Locale;
 
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
-        int count;
-        MovieBean movieBean;
-        public MyFragmentPagerAdapter(FragmentManager fm, int size)
-        {
-            super(fm);
-            count = size;
-        }
-        public android.support.v4.app.Fragment getItem(int position)
-        {
-            movieBean = new MovieBean();
-            return Fragment_DetailView.newInstance((HashMap<String,?>)movieBean.getItem(position));
+    int count;
+    MovieBean movieBean;
+    public MyFragmentPagerAdapter(FragmentManager fm, int size)
+    {
+        super(fm);
+        count = size;
+        movieBean = new MovieBean();
+    }
+    public android.support.v4.app.Fragment getItem(int position)
+    {
+
+        return Fragment_DetailView.newInstance((HashMap<String,?>)movieBean.getItem(position));
 
 
-        }
-        @Override
-        public int getCount(){return count;}
-        @Override
-        public CharSequence getPageTitle(int position){
-            Locale l = Locale.getDefault();
-            HashMap<String,?> movie = (HashMap<String,?>)movieBean.getItem(position);
-            String name = (String)movie.get("movieTitle");
-            return name.toUpperCase(l);
+    }
+    @Override
+    public int getCount(){return count;}
+    @Override
+    public CharSequence getPageTitle(int position){
+        HashMap<String,?> movie = (HashMap<String,?>)movieBean.getItem(position);
+        String name = (String)movie.get("title");
+        return name.toUpperCase();
     }
 }

@@ -11,6 +11,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 public class MainActivity extends AppCompatActivity implements MainFragment.coverPage {
 
     MainFragment mainFragment;
@@ -21,12 +23,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.cove
     @Override
     public void loadCoverPage(int index)
     {
-
-       if(index==1){
+        if(index==1){
         AboutMe = new AboutMe();
         getSupportFragmentManager().beginTransaction().replace(R.id.container, AboutMe).addToBackStack(null).commit();}
-        else if(index == 2) {
-      Intent lIntent = new Intent(MainActivity.this, Activity_ViewPager.class);
+       else if(index == 2) {
+       Intent lIntent = new Intent(MainActivity.this, Activity_ViewPager.class);
         startActivity(lIntent);
        }
        else if(index ==3)
@@ -56,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements MainFragment.cove
                 Intent vPager = new Intent(this,Activity_ViewPager.class);
                 startActivity(vPager);
                 return true;
+            case R.id.masterdetail:
+                Intent mDetail = new Intent(this,Activity_MasterDetail.class);
+                startActivity(mDetail);
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -64,9 +69,12 @@ public class MainActivity extends AppCompatActivity implements MainFragment.cove
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Fresco.initialize(this);
+
         setContentView(R.layout.activity_main);
 
-       if(savedInstanceState == null) {
+        if(savedInstanceState == null) {
             mainFragment = new MainFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.container, mainFragment)
                     .commit();

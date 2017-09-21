@@ -2,5 +2,7 @@
     <string name="app_name">Assignment3</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Master-Detail Layout</string>
+    <string name="title_activity__master_detail">Activity_MasterDetail</string>
+
 </resources>

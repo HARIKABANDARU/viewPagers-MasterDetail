@@ -34,14 +34,12 @@ public class Activity_ViewPager extends AppCompatActivity {
 
     }
     private void customiseViewPager(){
-      mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
-          @Override
-          public void transformPage(View page, float position) {
-              final float normalised_position = Math.abs(Math.abs(position) - 1);
-              page.setRotationY(position * -30);
-          }
-      });
+        mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
+            @Override
+            public void transformPage(View page, float position) {
+                final float normalised_position = Math.abs(Math.abs(position) - 1);
+                page.setRotationY(position * -30);
+            }
+        });
     }
 }
-
-
