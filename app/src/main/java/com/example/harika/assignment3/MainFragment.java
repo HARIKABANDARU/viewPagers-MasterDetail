@@ -22,7 +22,7 @@ import android.widget.Button;
  */
 public class MainFragment extends Fragment {
     public interface coverPage{
-        public void loadCoverPage();
+        public void loadCoverPage(int index);
     }
     Button aboutMe;
     Button viewPager;
@@ -77,11 +77,27 @@ public void onActivityCreated(Bundle savedInstancsState)
     {
         super.onActivityCreated(savedInstancsState);
         aboutMe=(Button)getActivity().findViewById(R.id.AboutMe);
+        viewPager = (Button)getActivity().findViewById(R.id.ViewPager);
+        masterFlow=(Button)getActivity().findViewById(R.id.MasterDetail);
         aboutMe.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View virew){
-                interfaceImplmentor.loadCoverPage();
+                interfaceImplmentor.loadCoverPage(1);
+            }
+        });
+        viewPager.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View virew){
+                interfaceImplmentor.loadCoverPage(2);
+            }
+        });
+        masterFlow.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View virew){
+                interfaceImplmentor.loadCoverPage(3);
             }
         });
     }

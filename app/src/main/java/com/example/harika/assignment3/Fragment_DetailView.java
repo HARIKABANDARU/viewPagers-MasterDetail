@@ -16,6 +16,10 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.facebook.common.util.UriUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 
@@ -37,6 +41,8 @@ public class Fragment_DetailView extends Fragment {
     TextView movieReleaseDate;
     TextView movieSynopsis;
     SimpleDraweeView moviePosterImage;
+    List<Map<String, ?>> moviesList;
+    MovieBean movieBean;
     public static Fragment_DetailView newInstance(HashMap<String,?> movie)
     {
         Fragment_DetailView fragment = new Fragment_DetailView();
@@ -78,12 +84,27 @@ public class Fragment_DetailView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        StringBuffer voteAverage = new StringBuffer(String.valueOf(movie.get("voteAverage")));
+
        View rootView = inflater.inflate(R.layout.fragment_fragment__detail_view, container, false);
         movieTitle = (TextView)rootView.findViewById(R.id.movieTitle);
         movieReleaseDate = (TextView)rootView.findViewById(R.id.movieReleaseDate);
         movieRating = (TextView) rootView.findViewById(R.id.movieRating);
         movieSynopsis = (TextView) rootView.findViewById(R.id.movieSynopsis);
         moviePosterImage = (SimpleDraweeView)rootView.findViewById(R.id.movieImage);
+        movieTitle.setText((CharSequence) movie.get("title"));
+        movieRating.setText(voteAverage.append("/10"));
+        movieReleaseDate.setText((CharSequence) movie.get("release"));
+        movieSynopsis.setText((CharSequence) movie.get("overview"));
+        Uri poster_uri = new Uri.Builder()
+                .scheme(UriUtil.LOCAL_RESOURCE_SCHEME) // "res"
+                .path(String.valueOf(movie.get("image")))
+                .build();
+
+        Log.d("poster_uri",String.valueOf(poster_uri));
+        moviePosterImage.setImageURI(poster_uri);
+
+
 
         return rootView;
     }
